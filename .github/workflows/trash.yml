@@ -1,0 +1,27 @@
+name: TRASH
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: '*/30 * * * *'
+    
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      
+    - name: TRASH
+      run: |
+        echo "$(date +%F-%T)" > TRASH.txt
+        
+    - uses: stefanzweifel/git-auto-commit-action@v4
+      with:
+          commit_message: BECOME A TRASH MAN
+          commit_options: '--no-verify --signoff'
+          repository: .
+          commit_user_name: Angga
+          commit_user_email: angga@linuxmail.org
+          commit_author: Angga <angga@linuxmail.org>
+        
